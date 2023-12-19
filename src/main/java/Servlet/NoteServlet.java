@@ -51,4 +51,3 @@ public class NoteServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/NoteServlet");
     }
 }
-
