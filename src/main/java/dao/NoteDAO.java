@@ -9,3 +9,4 @@ public interface NoteDAO  {
     void updateNoteById(int id, String updatedNote);
     void deleteNoteById(int id);
 }
+
