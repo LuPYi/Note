@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.NoteDAO;
-import dao.NoteDAOImpl;
+import dao.NoteDAOImplMySQL;
 
 @WebServlet("/NoteServlet")
 public class NoteServlet extends HttpServlet {
@@ -22,7 +22,7 @@ public class NoteServlet extends HttpServlet {
     @Override
     public void init() {
         // 在Servlet初始化时创建NoteDAO实例
-        noteDAO = new NoteDAOImpl();
+        noteDAO = new NoteDAOImplMySQL();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class NoteServlet extends HttpServlet {
         request.setAttribute("notes", notes);
 
         // 使用RequestDispatcher将请求分派到note.jsp页面
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/note.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -43,9 +43,12 @@ public class NoteServlet extends HttpServlet {
         String newNoteTitle = request.getParameter("note-title");
         String newNoteContent = request.getParameter("note-content");
 
-        // 使用NoteDAO实例将新笔记添加到数据库
-        String newNote = "Title: " + newNoteTitle + "\nContent: " + newNoteContent;
-        noteDAO.addNote(newNote);
+        // 检查newNoteTitle和newNoteContent是否为null
+        if (newNoteTitle != null && newNoteContent != null) {
+            // 使用NoteDAO实例将新笔记添加到数据库
+            String newNote = "Title: " + newNoteTitle + "\nContent: " + newNoteContent;
+            noteDAO.addNote(newNote);
+        }
 
         // 重定向到GET请求，显示更新后的笔记列表
         response.sendRedirect(request.getContextPath() + "/NoteServlet");

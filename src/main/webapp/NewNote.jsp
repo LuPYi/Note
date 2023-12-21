@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/view/header.jsp" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -54,9 +55,10 @@
             <input type="text" class="form-control" id="note-title" placeholder="輸入標題" required>
         </div>
         <div class="mb-3">
-            <label for="note-context" class="form-label"><h3>內容:</h3></label>
-            <textarea class="form-control" id="note-content" placeholder="輸入內容" required></textarea>
-        </div>
+    <label for="note-content" class="form-label"><h3>內容:</h3></label>
+    <textarea class="form-control" id="note-content" name="note-content" placeholder="輸入內容" required></textarea>
+</div>
+
         <button id="save-button" class="btn btn-success" type="submit">保存記事</button>
     </div>
     </form>

@@ -3,7 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteDAOImpl implements NoteDAO {
+public class NoteDAOImplMySQL implements NoteDAO {
 
     private List<String> notes = new ArrayList<>();
 

@@ -81,7 +81,14 @@
 
     <div class="register-container">
         <h2>註冊</h2>
-        <form action="NewNote.jsp" method="post">
+        
+         <!-- Display error message if it exists -->
+        <% String errorMessage = (String)request.getAttribute("errorMessage"); %>
+        <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
+            <p style="color: red;"><%= errorMessage %></p>
+        <% } %>
+        
+        <form action="RegistrationServlet" method="post">
             <label for="name">名稱:</label>
             <input type="text" id="name" name="name" placeholder="請輸入名稱" required>
             
