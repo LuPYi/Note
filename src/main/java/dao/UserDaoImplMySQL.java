@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+
 import beans.User;
 
+@Repository("UserDaoImplMySQL")
 public class UserDaoImplMySQL implements UserDao {
     String URL = "jdbc:mysql://localhost:3306/note";
     String USER = "web";
