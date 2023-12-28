@@ -84,7 +84,7 @@
             var context = document.getElementById("context").value;
 
             // 組合通知訊息
-            var notificationMessage = "標題：" + subject + "\n內容：" + context;
+            var notificationMessage ="新增成功" + "\n標題：" + subject + "\n內容：" + context;
 
             // 顯示警告框
             alert(notificationMessage);
