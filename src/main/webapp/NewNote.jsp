@@ -24,12 +24,12 @@
             text-align: center; /* Center text within the container */
         }
 
-        #note-title,
-        #note-content {
+        #subject,
+        #context {
             margin-bottom: 10px;
         }
         
-        #note-content {
+        #context {
             width: 100%; /* Make the textarea fill the entire width */
             height: 300px; /* Increase the height of the textarea */
             resize: none; /* Disable textarea resizing */
@@ -48,29 +48,50 @@
 
 <div class="container">
     <div id="note-container">
-    <form action="AddNoteServlet" method="post">
+    <form id="NoteForm" name="NoteForm" action="AddNoteServlet" method="post">
         <h1 class="display-4">個人記事本</h1>
         <div class="mb-3">
             <label for="note-title" class="form-label"><h3>標題:</h3></label>
-            <input type="text" class="form-control" id="note-title" placeholder="輸入標題" required>
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="輸入標題" required>
         </div>
         <div class="mb-3">
     <label for="note-content" class="form-label"><h3>內容:</h3></label>
-    <textarea class="form-control" id="note-content" name="note-content" placeholder="輸入內容" required></textarea>
+    <textarea class="form-control" id="context" name="context" placeholder="輸入內容" required></textarea>
 </div>
 
-        <button id="save-button" class="btn btn-success" type="submit">保存記事</button>
+        <button class="btn btn-success" id="save-button" name="save-button" type="submit">保存記事</button>
     </div>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-        var notificationMessage = '<%= request.getAttribute("notificationMessage") %>';
-        if (notificationMessage) {
+    // 等待文件載入完成
+    document.addEventListener("DOMContentLoaded", function() {
+        // 取得表單元素
+        var form = document.getElementById("NoteForm");
+
+        // 取得按鈕元素
+        var button = document.getElementById("save-button");
+
+        // 監聽表單提交事件
+        form.addEventListener("submit", function(event) {
+            // 取消表單的預設提交行為，以便您可以進行額外處理
+            event.preventDefault();
+
+            // 取得標題和內容的輸入值
+            var subject = document.getElementById("subject").value;
+            var context = document.getElementById("context").value;
+
+            // 組合通知訊息
+            var notificationMessage = "標題：" + subject + "\n內容：" + context;
+
+            // 顯示警告框
             alert(notificationMessage);
-        }
-    </script>
+
+        });
+    });
+</script>
 </body>
 </html>
 <%@ include file="/WEB-INF/view/footer.jsp"%>

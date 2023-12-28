@@ -42,7 +42,7 @@ public class RegistrationServlet extends HttpServlet {
                 request.getRequestDispatcher("Register.jsp").forward(request, response);
             }
         } finally {
-            // 不需要呼叫 closeConnection，因為 UserDAO 不包含 closeConnection 方法
+            
         }
     }
 }

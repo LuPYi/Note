@@ -12,9 +12,9 @@ import beans.User;
 
 @Repository("UserDaoImplMySQL")
 public class UserDaoImplMySQL implements UserDao {
-    String URL = "jdbc:mysql://localhost:3306/note";
-    String USER = "web";
-    String PASSWORD = "12345678";
+    String jdbcUrl = "jdbc:mysql://localhost:3306/note";
+    String dbUser = "web";
+    String dbPassword = "12345678";
 
     private Connection connection;
 
@@ -25,7 +25,8 @@ public class UserDaoImplMySQL implements UserDao {
     private void establishConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+            System.out.println("Connected to the database!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,11 +35,11 @@ public class UserDaoImplMySQL implements UserDao {
     @Override
     public boolean registerUser(User user) {
         if (connection == null) {
-            System.err.println("資料庫連接錯誤!!!");
+            System.err.println("Database connection error!");
             return false;
         }
 
-        String query = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
+        String query = "insert into user (name, email, password) values (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, user.getName());

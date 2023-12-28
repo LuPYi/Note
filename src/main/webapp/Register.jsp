@@ -97,10 +97,10 @@
 
             <label for="password">密碼:</label>
             <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
-
+			
             <label for="confirm-password">確認密碼:</label>
             <input type="password" id="confirm-password" name="confirm-password" placeholder="請再次輸入密碼" required>
-
+			 
             <button class="btn1" type="submit">註冊</button>
             <button class="btn2" type="button" onclick="location.href='login.jsp';">返回登入</button>
         </form>

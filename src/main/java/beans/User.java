@@ -1,23 +1,23 @@
 package beans;
 
 public class User {
-    private int id;
+    private int id;  // 自動新增
     private String name;
     private String email;
     private String password;
 
+    // 空的建構子
     public User() {
-        // 空的建構子
     }
 
+    // 帶參數的建構子
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    // Getter 和 Setter 省略
-
+    // Getter 和 Setter 方法
     public int getId() {
         return id;
     }
