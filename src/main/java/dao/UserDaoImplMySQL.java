@@ -54,4 +54,15 @@ public class UserDaoImplMySQL implements UserDao {
             return false;
         }
     }
+    public void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Connection closed.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

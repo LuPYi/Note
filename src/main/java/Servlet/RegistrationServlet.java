@@ -42,7 +42,7 @@ public class RegistrationServlet extends HttpServlet {
                 request.getRequestDispatcher("Register.jsp").forward(request, response);
             }
         } finally {
-            
-        }
+        	
     }
+}
 }
