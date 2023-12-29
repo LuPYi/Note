@@ -7,12 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import dao.UserDao;
 import dao.UserDaoImplMySQL;
 import beans.User;
 
-@WebServlet("/Registrationcontroller")
-public class Registrationcontroller extends HttpServlet {
+@Controller
+@RequestMapping("/Registrationcontroller")
+public class Registrationcontroller{
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
