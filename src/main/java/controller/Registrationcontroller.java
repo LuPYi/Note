@@ -1,4 +1,4 @@
-package Servlet;
+package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import dao.UserDao;
 import dao.UserDaoImplMySQL;
 import beans.User;
 
-@WebServlet("/RegistrationServlet")
-public class RegistrationServlet extends HttpServlet {
+@WebServlet("/Registrationcontroller")
+public class Registrationcontroller extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

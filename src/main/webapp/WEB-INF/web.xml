@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>SpringMVC</display-name>
+	<display-name>Note</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -29,23 +29,23 @@
 
 	<filter-mapping>
 		<filter-name>springUtf8Encoding</filter-name>
-		<url-pattern>/mvc/*</url-pattern>
+		<url-pattern>/note/*</url-pattern>
 	</filter-mapping>
 
 	<!-- 部署 DispatcherServlet - XML 配置版 -->
 	<servlet>
-		<servlet-name>springmvc</servlet-name>
+		<servlet-name>note</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/springmvc-servlet.xml</param-value>
+			<param-value>/WEB-INF/note-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/mvc/*</url-pattern>
+		<servlet-name>note</servlet-name>
+		<url-pattern>/note/*</url-pattern>
 	</servlet-mapping>
 	<!-- HiddenHttpMethodFilter -->
 	<filter>
@@ -54,7 +54,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>HiddenHttpMethodFilter</filter-name>
-		<url-pattern>/mvc/*</url-pattern>
+		<url-pattern>/note/*</url-pattern>
 	</filter-mapping>
 
 
