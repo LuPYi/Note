@@ -54,7 +54,7 @@
     <body>
         <div class="login-container">
             <h2>個人記事本登入</h2>
-            <form action="LoginServlet" method="post">
+            <form action="/Note/note/login" method="post">
                 <label for="username">使用者名稱:</label>
                 <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
                 

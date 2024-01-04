@@ -22,22 +22,22 @@ public class LoginFilter extends HttpFilter {
 		String urlString = request.getRequestURL().toString();
 
 		if (urlString.endsWith("login.jsp") 
-				|| urlString.endsWith("login")
+				|| urlString.endsWith("/login")
 				|| urlString.indexOf("/images") >= 0
 				|| urlString.endsWith(".css") 
 				|| urlString.endsWith(".js")) {
-			chain.doFilter(request, response);
+			chain.doFilter(request, response); // 放行
 			return;
 		}
 
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		if (user == null) {
-			response.sendRedirect(request.getContextPath() + "/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/note/login"); // 導回登入頁
 			return;
 		}
 
-		chain.doFilter(request, response);
+		chain.doFilter(request, response); // 放行
 
 	}
 

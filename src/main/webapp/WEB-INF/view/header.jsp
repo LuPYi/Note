@@ -38,7 +38,7 @@
 						aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
-				<a class="btn btn-danger ms-3 me-1" href="./login.jsp" role="button">登出</a>
+				<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>
 			</div>
 		</div>
 	</nav>
