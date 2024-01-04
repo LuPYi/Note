@@ -1,51 +1,61 @@
 package com.note.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.note.beans.User;
-import com.note.dao.UserDao;
 import com.note.dao.UserDaoImplMySQL;
 
 @Controller
-@RequestMapping("/Registrationcontroller")
-public class Registrationcontroller{
-    private static final long serialVersionUID = 1L;
+@RequestMapping("/register")
+public class Registrationcontroller {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 獲取表單數據
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirm-password");
+	@Autowired
+	UserDaoImplMySQL userDaoImplMySQL;
+	
+	@GetMapping
+	public String registerPage() {
+		return "Register";
+	}
+	
+	@PostMapping
+	public String register(@RequestParam("name") String name, @RequestParam("email") String email,
+			@RequestParam("password") String password, @RequestParam("confirm_password") String confirmPassword,
+			Model model) {
+		
+		//System.out.println("name:" + name);
+		//System.out.println("email:" + email);
+		//System.out.println("password:" + password);
+		//System.out.println("confirmPassword:" + confirmPassword);
+		
+		
+		// 簡單的密碼驗證
+		if (!password.equals(confirmPassword)) {
+			model.addAttribute("errorMessage", "密碼不匹配");
+			return "Register";
+		}
+		
 
-        // 簡單的密碼驗證
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("errorMessage", "密碼不匹配");
-            request.getRequestDispatcher("Register.jsp").forward(request, response);
-            return;
-        }
-
-        // 使用 UserDao 進行註冊
-        UserDao userDao = new UserDaoImplMySQL();
-        User user = new User(name, email, password);
-
-        try {
-            if (userDao.registerUser(user)) {
-                response.sendRedirect("Register.jsp");
-            } else {
-                request.setAttribute("errorMessage", "註冊失敗");
-                request.getRequestDispatcher("Register.jsp").forward(request, response);
-            }
-        } finally {
-        	
-    }
-}
+		// 檢查帳號是否已註冊
+		User user = userDaoImplMySQL.findUserByName(name);
+		if(user!=null) {
+			model.addAttribute("errorMessage", "此帳號已註冊");
+			return "Register";
+		}
+		
+		// 註冊
+		User newUser = new User(name, email, password);
+		if (userDaoImplMySQL.registerUser(newUser)) {
+			return "login";
+		}
+		
+		// 註冊失敗
+		model.addAttribute("errorMessage", "註冊失敗");
+		return "Register";
+	}
 }

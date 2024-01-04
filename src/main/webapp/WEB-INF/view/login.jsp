@@ -63,7 +63,7 @@
 
                 <div>
                     <button type="submit" class="btn btn-success btn-lg">登入</button>
-                    <a class="btn btn-danger btn-lg" href="./Register.jsp" role="button">註冊</a>
+                    <a class="btn btn-danger btn-lg" href="/Note/note/register" role="button">註冊</a>
                 </div>
             </form>
             <% String errorMessage = (String)request.getAttribute("errorMessage");
