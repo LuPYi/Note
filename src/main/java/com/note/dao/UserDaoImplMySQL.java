@@ -1,14 +1,13 @@
-package dao;
+package com.note.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import beans.User;
+import com.note.beans.User;
 
 @Repository("UserDaoImplMySQL")
 public class UserDaoImplMySQL implements UserDao {

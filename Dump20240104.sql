@@ -17,6 +17,9 @@ USE `note`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET @@global.time_zone = '+00:00';
+SET @@session.time_zone = '+00:00';
+
 --
 -- Table structure for table `hashtag`
 --

@@ -1,4 +1,4 @@
-package controller;
+package com.note.controller;
 
 import java.io.IOException;
 import java.sql.Connection;

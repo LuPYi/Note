@@ -1,4 +1,4 @@
-package beans;
+package com.note.beans;
 
 public class User {
     private int id;  // 自動新增

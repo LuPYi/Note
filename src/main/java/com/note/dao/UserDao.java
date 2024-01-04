@@ -1,6 +1,6 @@
-package dao;
+package com.note.dao;
 
-import beans.User;
+import com.note.beans.User;
 
 public interface UserDao {
     boolean registerUser(User user);

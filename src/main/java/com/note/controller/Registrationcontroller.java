@@ -1,19 +1,17 @@
-package controller;
+package com.note.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import dao.UserDao;
-import dao.UserDaoImplMySQL;
-import beans.User;
+import com.note.beans.User;
+import com.note.dao.UserDao;
+import com.note.dao.UserDaoImplMySQL;
 
 @Controller
 @RequestMapping("/Registrationcontroller")
