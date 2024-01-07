@@ -14,9 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/AddNotecontroller")
-public class AddNotecontroller extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@RequestMapping("/addNote")
+public class AddNotecontroller{
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

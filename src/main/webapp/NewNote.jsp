@@ -16,12 +16,12 @@
 
         #note-container {
             max-width: 600px;
-            margin: 80px auto; /* Adjust the top margin to move the container down */
+            margin: 80px auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center text within the container */
+            text-align: center; 
         }
 
         #subject,
@@ -30,9 +30,9 @@
         }
         
         #context {
-            width: 100%; /* Make the textarea fill the entire width */
-            height: 300px; /* Increase the height of the textarea */
-            resize: none; /* Disable textarea resizing */
+            width: 100%; 
+            height: 300px; 
+            resize: none; 
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
@@ -48,7 +48,7 @@
 
 <div class="container">
     <div id="note-container">
-    <form id="NoteForm" name="NoteForm" action="AddNoteServlet" method="post">
+    <form id="NoteForm" name="NoteForm" action="addNote" method="post">
         <h1 class="display-4">個人記事本</h1>
         <div class="mb-3">
             <label for="note-title" class="form-label"><h3>標題:</h3></label>
