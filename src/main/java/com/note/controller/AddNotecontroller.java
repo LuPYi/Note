@@ -10,52 +10,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.note.dao.NoteBookDaoImplMySQL;
+import com.note.dao.UserDaoImplMySQL;
 
 @Controller
 @RequestMapping("/addNote")
 public class AddNotecontroller{
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 獲取表單輸入
-        String subject = request.getParameter("subject");
-        String context = request.getParameter("context");
-
-        // 在實際應用中，你應該優先使用連接池而不是在Servlet中直接建立連接
-        String jdbcUrl = "jdbc:mysql://localhost:3306/note";
-        String username = "web";
-        String password = "12345678";
-
-        try {
-            // 載入JDBC驅動
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // 建立資料庫連接
-            try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
-                // 準備SQL語句
-                String sql = "INSERT INTO notebook (subject, context) VALUES (?, ?)";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    // 設定參數值
-                	preparedStatement.setString(1, subject);
-                    preparedStatement.setString(2, context);
-
-                    // 執行SQL語句
-                    preparedStatement.executeUpdate();
-                }
-            }
-         // 新增成功，發送通知
-            String notificationMessage = "新增成功！";
-            request.setAttribute("notificationMessage", notificationMessage);
-        
-         // 重新導向到成功頁面或其他適當的操作
-            response.sendRedirect("index.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        
-    }
+	
+	@Autowired
+	NoteBookDaoImplMySQL notebookDaoImplMySQL;
+	
+	@GetMapping
+	public String addnotebook() {
+		return "NewNote";
+	}
+	
+	@PostMapping
+	public String addNote(@RequestParam("subject") String subject, 
+						   @RequestParam("context") String context,
+			               Model model) {
+		
+		if (subject==null) {
+			model.addAttribute("errorMessage", "請輸入subject");
+			return "NewNote";
+		}
+		return "NewNote";
+            
+  
+  
 }
-
+}
