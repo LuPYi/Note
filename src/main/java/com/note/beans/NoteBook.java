@@ -1,37 +1,66 @@
 package com.note.beans;
 
+import java.sql.Timestamp;
+
 public class NoteBook {
-	private int id;  // 自動新增
+    private int bookId;
+    private int userId;
     private String subject;
     private String context;
-    
-    // 空的建構子
+    private Timestamp createTime;
+    private Timestamp updateTime;
+
     public NoteBook() {
+        // 空的建構子
     }
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // getters 和 setters
 
-	public String getSubject() {
-		return subject;
-	}
+    public int getBookId() {
+        return bookId;
+    }
 
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
 
-	public String getContext() {
-		return context;
-	}
+    public int getUserId() {
+        return userId;
+    }
 
-	public void setContext(String context) {
-		this.context = context;
-	}
- 
-    
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
 }

@@ -2,7 +2,10 @@ package com.note.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -19,7 +22,7 @@ public class NoteBookDaoImplMySQL implements NoteBookDao{
 
 	@Override
 	public boolean AddNoteBook(NoteBook notebook) {
-		 String query = "insert into user (subject, context) values (?, ?)";
+		 String query = "insert into notebook (subject, context) values (?, ?)";
 	        try ( Connection connection = datasource.getConnection();
 	        	  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 	            preparedStatement.setString(1, notebook.getSubject());
@@ -33,5 +36,32 @@ public class NoteBookDaoImplMySQL implements NoteBookDao{
 	            return false;
 	        }
 	}
+
+	 @Override
+	    public List<NoteBook> getAllNotes() {
+	        List<NoteBook> notes = new ArrayList<>();
+	        String query = "SELECT * FROM notebook";
+	        try (Connection connection = datasource.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(query);
+	             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+	            while (resultSet.next()) {
+	            	NoteBook note = new NoteBook();
+	                note.setBookId(resultSet.getInt("book_id"));
+	                note.setUserId(resultSet.getInt("user_id"));
+	                note.setSubject(resultSet.getString("subject"));
+	                note.setContext(resultSet.getString("context"));
+	                note.setCreateTime(resultSet.getTimestamp("create_time"));
+	                note.setUpdateTime(resultSet.getTimestamp("update_time"));
+
+	                notes.add(note);
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        return notes;
+	    }
 	
 }
