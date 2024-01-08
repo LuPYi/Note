@@ -24,7 +24,7 @@
 			<hr class="my-4">
 			<p>開始記錄你的想法和事件吧！</p>
 			<div>
-				<a class="btn btn-primary btn-lg" href="./NewNote.jsp" role="button">開始記錄</a>
+				<a class="btn btn-primary btn-lg" href="/Note/note/addNote" role="button">開始記錄</a>
 			</div>
 		</div>
 

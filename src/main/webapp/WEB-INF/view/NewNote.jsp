@@ -48,7 +48,7 @@
 
 <div class="container">
     <div id="note-container">
-    <form id="NoteForm" name="NoteForm" action="addNote" method="post">
+    <form id="NoteForm" name="NoteForm" action="/Note/note/addNote" method="post">
         <h1 class="display-4">個人記事本</h1>
         <div class="mb-3">
             <label for="note-title" class="form-label"><h3>標題:</h3></label>
@@ -65,6 +65,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!--  
 <script>
     // 等待文件載入完成
     document.addEventListener("DOMContentLoaded", function() {
@@ -92,6 +93,7 @@
         });
     });
 </script>
+-->
 </body>
 </html>
 <%@ include file="/WEB-INF/view/footer.jsp"%>

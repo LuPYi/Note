@@ -8,5 +8,5 @@ import com.note.beans.User;
 public interface NoteBookDao {
 	boolean AddNoteBook(NoteBook notebook);
 	
-	List<NoteBook> getAllNotes();
+	//List<NoteBook> getAllNotes();
 }

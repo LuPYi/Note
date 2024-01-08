@@ -31,7 +31,7 @@
 					<li class="nav-item"><a class="nav-link active text-light"
 						aria-current="page" href="./">首頁</a></li>
 					<li class="nav-item"><a class="nav-link text-light"
-						href="./NewNote.jsp">記事本</a></li>
+						href="/Note/note/addNote">記事本</a></li>
 				</ul>
 				<form class="d-flex ms-lg-auto">
 					<input class="form-control me-2" type="search" placeholder="Search"
