@@ -16,7 +16,12 @@ public class NoteBook {
 
     // getters 和 setters
 
-    public int getBookId() {
+    public NoteBook(String subject, String context) {
+		this.subject = subject;
+		this.context = context;
+	}
+
+	public int getBookId() {
         return bookId;
     }
 
@@ -63,4 +68,9 @@ public class NoteBook {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+    
+    @Override
+	public String toString() {
+		return "NoteBook [bookId=" + bookId + ", userId=" + userId + ", subject=" + subject + ", context=" + context + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+	}
 }

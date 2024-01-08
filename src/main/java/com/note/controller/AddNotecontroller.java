@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.note.beans.NoteBook;
+import com.note.beans.User;
 import com.note.dao.NoteBookDaoImplMySQL;
 import com.note.dao.UserDaoImplMySQL;
 
@@ -38,13 +40,14 @@ public class AddNotecontroller{
 						   @RequestParam("context") String context,
 			               Model model) {
 		
+		System.out.println("subject:" + subject);
+		System.out.println("context:" + context);
+		
 		if (subject==null) {
 			model.addAttribute("errorMessage", "請輸入subject");
 			return "NewNote";
 		}
 		return "NewNote";
-            
-  
   
 }
 }
