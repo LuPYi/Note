@@ -44,17 +44,3 @@
 	</nav>
 </body>
 </html>
-
- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js">
-    </script>
-    <script>
-        $('.nav-link').on('click', function () {
-            $('.navbar-collapse').collapse('hide');
-        });
-        $('.navbar-toggler-icon').on('click', function () {
-            $('.navbar-collapse').collapse('hide');
-        });
-        $('body').on('click', function () {
-            $('.navbar-collapse').collapse('hide');
-        });
-    </script>
