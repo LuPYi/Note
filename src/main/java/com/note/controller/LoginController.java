@@ -32,7 +32,7 @@ public class LoginController {
 		boolean isAuthenticated = authenticateUser(username, password, session);
 		
 		if (isAuthenticated) {
-			return "redirect:/index.jsp";
+			return "redirect:/note/";
 		}
 		
 		model.addAttribute("errorMessage", "帳號或密碼輸入錯誤");

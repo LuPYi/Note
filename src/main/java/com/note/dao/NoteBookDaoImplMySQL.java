@@ -2,7 +2,10 @@ package com.note.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -33,31 +36,28 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 		}
 	}
 
-//	 @Override
-//	    public List<NoteBook> getAllNotes() {
-//	        List<NoteBook> notes = new ArrayList<>();
-//	        String query = "SELECT * FROM notebook";
-//	        try (Connection connection = datasource.getConnection();
-//	             PreparedStatement preparedStatement = connection.prepareStatement(query);
-//	             ResultSet resultSet = preparedStatement.executeQuery()) {
-//
-//	            while (resultSet.next()) {
-//	            	NoteBook note = new NoteBook();
-//	                note.setBookId(resultSet.getInt("book_id"));
-//	                note.setUserId(resultSet.getInt("user_id"));
-//	                note.setSubject(resultSet.getString("subject"));
-//	                note.setContext(resultSet.getString("context"));
-//	                note.setCreateTime(resultSet.getTimestamp("create_time"));
-//	                note.setUpdateTime(resultSet.getTimestamp("update_time"));
-//
-//	                notes.add(note);
-//	            }
-//
-//	        } catch (SQLException e) {
-//	            e.printStackTrace();
-//	        }
-//
-//	        return notes;
-//	    }
+	@Override
+	public List<NoteBook> getAllNotesByUserId(Integer userId) {
+		List<NoteBook> notes = new ArrayList<>();
+		String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM notebook where user_id=?";
+		try (Connection connection = datasource.getConnection();
+			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+			preparedStatement.setInt(1, userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				NoteBook note = new NoteBook();
+				note.setBookId(resultSet.getInt("book_id"));
+				note.setUserId(resultSet.getInt("user_id"));
+				note.setSubject(resultSet.getString("subject"));
+				note.setContext(resultSet.getString("context"));
+				note.setCreateTime(resultSet.getTimestamp("create_time"));
+				note.setUpdateTime(resultSet.getTimestamp("update_time"));
+				notes.add(note);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return notes;
+	}
 
 }

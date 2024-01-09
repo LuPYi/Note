@@ -29,7 +29,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active text-light"
-						aria-current="page" href="./index.jsp">首頁</a></li>
+						aria-current="page" href="/Note/note/">首頁</a></li>
 					<li class="nav-item"><a class="nav-link text-light"
 						href="/Note/note/addNote">記事本</a></li>
 				</ul>
@@ -39,6 +39,7 @@
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 				<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>
+				<p class="text-white m-2 fs-5">${ user.name }</p>
 			</div>
 		</div>
 	</nav>
