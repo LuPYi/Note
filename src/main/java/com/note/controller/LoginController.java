@@ -2,6 +2,7 @@ package com.note.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,10 +46,10 @@ public class LoginController {
 		if(user == null)
 			return false;
 		
-		if(!user.getName().equals(username) || !user.getPassword().equals(password)) {
+		if(!user.getName().equals(username) || !BCrypt.checkpw(password, user.getPassword())) {
 			return false;
 		}
-		
+
 		session.setAttribute("user", user);
 		return true;
 	}

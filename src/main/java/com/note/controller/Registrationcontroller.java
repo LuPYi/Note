@@ -1,5 +1,6 @@
 package com.note.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,6 @@ public class Registrationcontroller {
 		//System.out.println("password:" + password);
 		//System.out.println("confirmPassword:" + confirmPassword);
 		
-		
 		// 簡單的密碼驗證
 		if (!password.equals(confirmPassword)) {
 			model.addAttribute("errorMessage", "密碼不匹配");
@@ -48,8 +48,11 @@ public class Registrationcontroller {
 			return "Register";
 		}
 		
+		// 密碼加密
+		String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+		
 		// 註冊
-		User newUser = new User(name, email, password);
+		User newUser = new User(name, email, hashedPassword);
 		if (userDaoImplMySQL.registerUser(newUser)) {
 			return "login";
 		}
