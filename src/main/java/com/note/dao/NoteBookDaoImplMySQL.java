@@ -2,10 +2,7 @@ package com.note.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -13,31 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.note.beans.NoteBook;
-import com.note.beans.User;
 
 @Repository("notebookDaoImplMySQL")
-public class NoteBookDaoImplMySQL implements NoteBookDao{
+public class NoteBookDaoImplMySQL implements NoteBookDao {
+
 	@Autowired
 	DataSource datasource;
 
 	@Override
-	public boolean AddNoteBook(NoteBook notebook) {
-		 String query = "insert into notebook (subject, context) values (?, ?)";
-	        try ( Connection connection = datasource.getConnection();
-	        	  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-	            preparedStatement.setString(1, notebook.getSubject());
-	            preparedStatement.setString(2, notebook.getContext());
-
-	            int rowsAffected = preparedStatement.executeUpdate();
-
-	            return rowsAffected > 0;
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
-
-
+	public boolean addNoteBook(NoteBook notebook) {
+		String query = "insert into notebook (user_id,subject, context) values ( ?, ?, ?)";
+		try (Connection connection = datasource.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, notebook.getUserId());
+			preparedStatement.setString(2, notebook.getSubject());
+			preparedStatement.setString(3, notebook.getContext());
+			int rowsAffected = preparedStatement.executeUpdate();
+			return rowsAffected > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 //	 @Override
 //	    public List<NoteBook> getAllNotes() {
@@ -65,5 +59,5 @@ public class NoteBookDaoImplMySQL implements NoteBookDao{
 //
 //	        return notes;
 //	    }
-	
+
 }
