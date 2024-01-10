@@ -9,4 +9,6 @@ public interface NoteBookDao {
 	boolean addNoteBook(NoteBook notebook);
 	
 	List<NoteBook> getAllNotesByUserId(Integer userId);
+	
+	int deleteNoteBook(Integer bookId);
 }

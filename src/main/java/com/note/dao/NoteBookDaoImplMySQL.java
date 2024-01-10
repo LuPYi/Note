@@ -60,4 +60,21 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 		return notes;
 	}
 
+	@Override
+	public int deleteNoteBook(Integer bookId) {
+		String query = "DELETE FROM notebook WHERE book_Id = ?";
+        try (Connection connection = datasource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, bookId);
+            return preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0; // 或者你可以選擇拋出一個異常
+        }
+    }
+
+	
+
 }
