@@ -39,7 +39,7 @@
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 				<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>
-				<p class="text-white m-2 fs-5">${ user.name }</p>
+				<p class="text-white m-2 fs-5 border border-light border-3 p-2">😎${ user.name }</p>
 			</div>
 		</div>
 	</nav>

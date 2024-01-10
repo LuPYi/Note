@@ -49,7 +49,9 @@ public class AddNotecontroller{
 
 		notebookDaoImplMySQL.addNoteBook(noteBook);
 		
-		return new Gson().toJson("success中文");
+		return new Gson().toJson("success 新增成功" 
+								+ "\nsubject: " + addNoteBook.getSubject() 
+								+ "\ncontext: " + addNoteBook.getContext());
   
 	}
 }
