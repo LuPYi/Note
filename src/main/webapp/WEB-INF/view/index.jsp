@@ -45,7 +45,9 @@
 									<div
 										class="accordion-body d-flex justify-content-between align-items-center">
 										${ noteBook.context }
-										<button class="btn btn-danger" type="submit">刪除</button>
+									<div>
+										<a class="btn btn-danger" href="/Note/note/delete" role="button" type="submit">刪除</a>
+									</div>
 									</div>
 								</div>
 							</div>
