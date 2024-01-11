@@ -62,7 +62,7 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 
 	@Override
 	public int deleteNoteBook(Integer bookId) {
-		String query = "DELETE FROM notebook WHERE book_Id = ?";
+		String query = "DELETE FROM notebook WHERE book_id = ?";
         try (Connection connection = datasource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 

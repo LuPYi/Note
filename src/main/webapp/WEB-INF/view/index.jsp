@@ -46,7 +46,7 @@
 										class="accordion-body d-flex justify-content-between align-items-center">
 										${ noteBook.context }
 									<div>
-										<a class="btn btn-danger" href="/Note/note/delete" role="button" type="submit">刪除</a>
+										<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</a>
 									</div>
 									</div>
 								</div>
@@ -63,5 +63,15 @@
 	</div>
 </body>
 </html>
+
+<script>
+
+	function deleteNoteBook((subject,bookId) {
+		if(window.confirm('確定要刪除嗎？' + subject)) {
+			window.location = '/Note/note/delete/'+ bookId;
+		}
+	}
+
+</script>
 
 <%@ include file="/WEB-INF/view/footer.jsp"%>
