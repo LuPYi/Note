@@ -66,7 +66,7 @@
 
 <script>
 
-	function deleteNoteBook((subject,bookId) {
+	function deleteNoteBook(subject,bookId) {
 		if(window.confirm('確定要刪除嗎？' + subject)) {
 			window.location = '/Note/note/delete/'+ bookId;
 		}
