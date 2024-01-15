@@ -46,6 +46,7 @@
 										class="accordion-body d-flex justify-content-between align-items-center">
 										${ noteBook.context }
 									<div>
+										<button class="btn btn-success me-1" >修改</a>
 										<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</a>
 									</div>
 									</div>
