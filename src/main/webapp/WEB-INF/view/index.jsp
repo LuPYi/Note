@@ -65,6 +65,10 @@
 </html>
 
 <script>
+	
+	//function editNoteBook(bookId, subject, context) {
+	//    window.location = '/Note/note/addNote/' + encodeURIComponent(subject) + '/' + encodeURIComponent(context);
+	//}
 
 	function deleteNoteBook(subject,bookId) {
 		if(window.confirm('確定要刪除嗎？' + subject)) {

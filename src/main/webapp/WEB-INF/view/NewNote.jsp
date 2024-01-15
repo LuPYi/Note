@@ -74,20 +74,15 @@ body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // 等待文件載入完成
-    document.addEventListener("DOMContentLoaded", function() {
-        // 取得表單元素
-        var form = document.getElementById("NoteForm");
 
-        // 取得按鈕元素
+    document.addEventListener("DOMContentLoaded", function() {
+
+        var form = document.getElementById("NoteForm");
         var button = document.getElementById("save-button");
 
-        // 監聽表單提交事件
         form.addEventListener("submit", function(event) {
-            // 取消表單的預設提交行為，以便您可以進行額外處理
             event.preventDefault();
-
-            // 取得標題和內容的輸入值
+           
             var subject = document.getElementById("subject").value;
             var context = document.getElementById("context").value;
 

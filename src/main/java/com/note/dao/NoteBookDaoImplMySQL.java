@@ -74,6 +74,23 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
             return 0; // 或者你可以選擇拋出一個異常
         }
     }
+	
+	  @Override
+	    public boolean updateNoteBook(NoteBook notebook) {
+	        String query = "UPDATE notebook SET subject = ?, context = ? WHERE book_id = ?";
+	        try (Connection connection = datasource.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            preparedStatement.setString(1, notebook.getSubject());
+	            preparedStatement.setString(2, notebook.getContext());
+	            preparedStatement.setInt(3, notebook.getBookId());
+
+	            int rowsAffected = preparedStatement.executeUpdate();
+	            return rowsAffected > 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
 
 	
 
