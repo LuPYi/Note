@@ -3,10 +3,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>查询结果</title>
+    <title>查詢結果</title>
 </head>
 <body>
-    <h2>查询结果</h2>
+    <h2>查詢結果</h2>
     <c:forEach var="note" items="${notes}">
         <p>${note.subject}: ${note.context}</p>
     </c:forEach>
