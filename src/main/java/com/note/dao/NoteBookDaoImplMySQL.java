@@ -99,15 +99,15 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 	        try (Connection connection = datasource.getConnection();
 	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 	            preparedStatement.setInt(1, userId);
-	            ResultSet resultSet = preparedStatement.executeQuery();
-	            while (resultSet.next()) {
+	            ResultSet rs = preparedStatement.executeQuery();
+	            while (rs.next()) {
 	                NoteBook note = new NoteBook();
-	                note.setBookId(resultSet.getInt("book_id"));
-	                note.setUserId(resultSet.getInt("user_id"));
-	                note.setSubject(resultSet.getString("subject"));
-	                note.setContext(resultSet.getString("context"));
-	                note.setCreateTime(resultSet.getTimestamp("create_time"));
-	                note.setUpdateTime(resultSet.getTimestamp("update_time"));
+	                note.setBookId(rs.getInt("book_id"));
+	                note.setUserId(rs.getInt("user_id"));
+	                note.setSubject(rs.getString("subject"));
+	                note.setContext(rs.getString("context"));
+	                note.setCreateTime(rs.getTimestamp("create_time"));
+	                note.setUpdateTime(rs.getTimestamp("update_time"));
 	                notes.add(note);
 	            }
 	        } catch (SQLException e) {
