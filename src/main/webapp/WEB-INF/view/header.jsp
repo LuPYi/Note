@@ -33,9 +33,8 @@
 					<li class="nav-item"><a class="nav-link text-light"
 						href="/Note/note/addNote">記事本</a></li>
 				</ul>
-				<form class="d-flex ms-lg-auto">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
+				<form class="d-flex ms-lg-auto" action="/Note/note/query" method="get">
+					<input class="form-control me-2" type="search" placeholder="Search" name="keyword">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 				<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>

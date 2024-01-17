@@ -14,5 +14,7 @@ public interface NoteBookDao {
 
 	boolean updateNoteBook(NoteBook notebook);
 
-	List<NoteBook> getNotesByUserId(Integer userId);
+	List<NoteBook> getNotesByUserIdAndKeyWord(Integer userId, String keyword);
+	
+	NoteBook getNoteBookByUserIdAndBookId(Integer userId,Integer bookId);
 }

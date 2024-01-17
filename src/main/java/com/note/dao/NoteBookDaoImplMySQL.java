@@ -41,7 +41,7 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 		List<NoteBook> notes = new ArrayList<>();
 		String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM notebook where user_id=?";
 		try (Connection connection = datasource.getConnection();
-			 PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(query);) {
 			preparedStatement.setInt(1, userId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
@@ -63,59 +63,83 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 	@Override
 	public int deleteNoteBook(Integer bookId) {
 		String query = "DELETE FROM notebook WHERE book_id = ?";
-        try (Connection connection = datasource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+		try (Connection connection = datasource.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setInt(1, bookId);
-            return preparedStatement.executeUpdate();
+			preparedStatement.setInt(1, bookId);
+			return preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0; // 或者你可以選擇拋出一個異常
-        }
-    }
-	
-	  @Override
-	    public boolean updateNoteBook(NoteBook notebook) {
-	        String query = "UPDATE notebook SET subject = ?, context = ? WHERE book_id = ?";
-	        try (Connection connection = datasource.getConnection();
-	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-	            preparedStatement.setString(1, notebook.getSubject());
-	            preparedStatement.setString(2, notebook.getContext());
-	            preparedStatement.setInt(3, notebook.getBookId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0; // 或者你可以選擇拋出一個異常
+		}
+	}
 
-	            int rowsAffected = preparedStatement.executeUpdate();
-	            return rowsAffected > 0;
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
-	  
-	  @Override
-	    public List<NoteBook> getNotesByUserId(Integer userId) {
-	        List<NoteBook> notes = new ArrayList<>();
-	        String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM notebook WHERE user_id=?";
-	        try (Connection connection = datasource.getConnection();
-	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-	            preparedStatement.setInt(1, userId);
-	            ResultSet rs = preparedStatement.executeQuery();
-	            while (rs.next()) {
-	                NoteBook note = new NoteBook();
-	                note.setBookId(rs.getInt("book_id"));
-	                note.setUserId(rs.getInt("user_id"));
-	                note.setSubject(rs.getString("subject"));
-	                note.setContext(rs.getString("context"));
-	                note.setCreateTime(rs.getTimestamp("create_time"));
-	                note.setUpdateTime(rs.getTimestamp("update_time"));
-	                notes.add(note);
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	        return notes;
-	    }
+	@Override
+	public boolean updateNoteBook(NoteBook notebook) {
+		String query = "UPDATE notebook SET subject = ?, context = ? WHERE book_id = ?";
+		try (Connection connection = datasource.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setString(1, notebook.getSubject());
+			preparedStatement.setString(2, notebook.getContext());
+			preparedStatement.setInt(3, notebook.getBookId());
 
-	
+			int rowsAffected = preparedStatement.executeUpdate();
+			return rowsAffected > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public NoteBook getNoteBookByUserIdAndBookId(Integer userId, Integer bookId) {
+		String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM notebook WHERE user_id=? and book_id=?";
+		try (Connection connection = datasource.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, bookId);
+			ResultSet rs = preparedStatement.executeQuery();
+			if (rs.next()) {
+				NoteBook note = new NoteBook();
+				note.setBookId(rs.getInt("book_id"));
+				note.setUserId(rs.getInt("user_id"));
+				note.setSubject(rs.getString("subject"));
+				note.setContext(rs.getString("context"));
+				note.setCreateTime(rs.getTimestamp("create_time"));
+				note.setUpdateTime(rs.getTimestamp("update_time"));
+				return note;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<NoteBook> getNotesByUserIdAndKeyWord(Integer userId, String keyword) {
+		List<NoteBook> notes = new ArrayList<>();
+		String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM note.notebook where user_id=? and (context like ? OR subject like ?)";
+		try (Connection connection = datasource.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, userId);
+		    preparedStatement.setString(2, "%" + keyword + "%");
+		    preparedStatement.setString(3, "%" + keyword + "%");
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				NoteBook note = new NoteBook();
+				note.setBookId(rs.getInt("book_id"));
+				note.setUserId(rs.getInt("user_id"));
+				note.setSubject(rs.getString("subject"));
+				note.setContext(rs.getString("context"));
+				note.setCreateTime(rs.getTimestamp("create_time"));
+				note.setUpdateTime(rs.getTimestamp("update_time"));
+				notes.add(note);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return notes;
+	}
 
 }
