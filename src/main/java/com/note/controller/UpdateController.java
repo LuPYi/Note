@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.note.beans.NoteBook;
-import com.note.beans.UpdateNoteBook;
 import com.note.beans.User;
 import com.note.dao.NoteBookDaoImplMySQL;
 
