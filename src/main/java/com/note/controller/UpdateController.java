@@ -26,21 +26,18 @@ public class UpdateController {
 
     @GetMapping("/{bookId}")
     public String showUpdateForm(HttpSession session,@PathVariable int bookId, Model model) {
-        
-    	// 從 session 去拿 登入者資訊
+
     	User user = (User)session.getAttribute("user");
-    	
-    	// 根據bookId查找要修改的記事本
+
     	NoteBook noteBook = notebookDaoImplMySQL.getNoteBookByUserIdAndBookId(user.getId(),bookId);
 
         if (noteBook == null) {
             model.addAttribute("errorMessage", "查無此記事本");
-            return "redirect:/index"; // 或者導向其他頁面
+            return "redirect:/index";
         }
 
-        // 將查找到的記事本傳遞到前端表單
         model.addAttribute("noteBook", noteBook);
-        return "update_note"; // 這裡是你的修改表單頁面的名稱
+        return "update_note";
     }
 
     @PostMapping("/{bookId}")
@@ -49,21 +46,19 @@ public class UpdateController {
                                  @RequestParam("subject") String newSubject,
                                  @RequestParam("context") String newContext,
                                  Model model) {
-        // 根據bookId查找要修改的記事本
+
     	User user = (User)session.getAttribute("user");
-    	
-    	// 根據bookId查找要修改的記事本
+
     	NoteBook noteBook = notebookDaoImplMySQL.getNoteBookByUserIdAndBookId(user.getId(),bookId);
 
         if (noteBook == null) {
             model.addAttribute("errorMessage", "查無此記事本");
-            return "update_note"; // 或者導向其他頁面
+            return "update_note";
         }
 
         noteBook.setSubject(newSubject);
         noteBook.setContext(newContext);
 
-        // 嘗試更新記事本
         boolean updateSuccess = notebookDaoImplMySQL.updateNoteBook(noteBook);
 
         if (updateSuccess) {
@@ -72,7 +67,7 @@ public class UpdateController {
             model.addAttribute("errorMessage", "記事本更新失敗");
         }
 
-        return "redirect:/note/"; // 或者導向其他頁面
+        return "redirect:/note/";
     }
 }
 

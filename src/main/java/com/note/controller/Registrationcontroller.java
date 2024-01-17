@@ -29,17 +29,11 @@ public class Registrationcontroller {
 			@RequestParam("password") String password, @RequestParam("confirm_password") String confirmPassword,
 			Model model) {
 		
-		//System.out.println("name:" + name);
-		//System.out.println("email:" + email);
-		//System.out.println("password:" + password);
-		//System.out.println("confirmPassword:" + confirmPassword);
-		
 		// 簡單的密碼驗證
 		if (!password.equals(confirmPassword)) {
 			model.addAttribute("errorMessage", "密碼不匹配");
 			return "Register";
 		}
-		
 
 		// 檢查帳號是否已註冊
 		User user = userDaoImplMySQL.findUserByName(name);

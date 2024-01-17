@@ -66,9 +66,9 @@
                 </div>
             </form>
             <% String errorMessage = (String)request.getAttribute("errorMessage");
-           if (errorMessage != null) { %>
-            <p style="color: red;"><%= errorMessage %></p>
-      		  <% } %>
+	           if (errorMessage != null) { %>
+	            <p style="color: red;"><%= errorMessage %></p>
+	      		  <% } %>
         </div>
     </body>
 </html>

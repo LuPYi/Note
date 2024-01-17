@@ -71,7 +71,7 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0; // 或者你可以選擇拋出一個異常
+			return 0;
 		}
 	}
 

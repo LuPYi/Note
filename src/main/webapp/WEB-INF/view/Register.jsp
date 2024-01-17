@@ -81,8 +81,7 @@
 
     <div class="register-container">
         <h2>註冊</h2>
-        
-         <!-- Display error message if it exists -->
+
         <% String errorMessage = (String)request.getAttribute("errorMessage"); %>
         <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
             <p style="color: red;"><%= errorMessage %></p>
@@ -105,7 +104,5 @@
             <button class="btn2" type="button" onclick="location.href='login.jsp';">返回登入</button>
         </form>
     </div>
-
-
 </body>
 </html>

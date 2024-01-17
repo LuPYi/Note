@@ -11,10 +11,8 @@ public class NoteBook {
     private Timestamp updateTime;
 
     public NoteBook() {
-        // 空的建構子
+       
     }
-
-    // getters 和 setters
 
     public NoteBook(String subject, String context) {
 		this.subject = subject;
