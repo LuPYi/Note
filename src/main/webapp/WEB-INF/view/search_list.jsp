@@ -6,17 +6,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
- <h1 class="fw-bold m-3 text-primary">查詢結果</h1>
+ <h1 class="fw-bold m-3" style="color:#1fafaf;">查詢結果</h1>
  <c:forEach var="noteBook" items="${notes}">
      
-     	<div class="card m-2 border-info border-3" style="width: 15rem;">
+     	<div class="card m-2 border-info border-3" style="width: 20rem;">
 			<div class="card-body">
 				<h5 class="card-title fw-bold">${noteBook.subject}</h5>
 				<p class="card-text">${noteBook.context}</p>
-				<button class="btn btn-success position-absolute bottom-0 end-0" onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-success" onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
+					<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</button>
+				</div>
 	  		</div>
 		</div>
      
  </c:forEach>
 
 <%@ include file="/WEB-INF/view/footer.jsp"%>
+
+<script>
+	
+	function deleteNoteBook(subject,bookId) {
+		if(window.confirm('確定要刪除嗎？' + subject)) {
+			window.location = '/Note/note/delete/'+ bookId;
+		}
+	}
+
+</script>
