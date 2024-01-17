@@ -20,7 +20,7 @@ body {
 #note-container {
 	max-width: 600px;
 	margin: 80px auto;
-	background-color: #fff;
+	background-color: #5088977e;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -51,21 +51,22 @@ body {
 	<div class="container">
 		<h5 class="text-center text-primary mt-3">${ message }</h5>
 		<div id="note-container">
-			<form id="NoteForm" name="NoteForm">
+			<form id="updateNoteForm" name="updateNoteForm" action="/Note/note/update/{bookId}" method="post">
 				<h1 class="display-4">個人記事本</h1>
 				<div class="mb-3">
 					<label for="note-title" class="form-label"><h3>標題:</h3></label> <input
 						type="text" class="form-control" id="subject" name="subject"
-						placeholder="輸入標題" required>
+						placeholder="輸入標題" required>${ noteBook.subject }
 				</div>
 				<div class="mb-3">
 					<label for="note-content" class="form-label"><h3>內容:</h3></label>
 					<textarea class="form-control" id="context" name="context"
 						placeholder="輸入內容" required></textarea>
+						${ noteBook.context }
 				</div>
 
 				<button class="btn btn-success" id="save-button" name="save-button"
-					type="submit">保存記事</button>
+					type="submit">修改記事</button>
 			</form>
 		</div>
 	</div>
@@ -73,38 +74,6 @@ body {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        var form = document.getElementById("NoteForm");
-        var button = document.getElementById("save-button");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-           
-            var subject = document.getElementById("subject").value;
-            var context = document.getElementById("context").value;
-
-            fetch("/Note/note/addNote", {
-                method: "POST",
-                headers: {
-                   "content-type": "application/json"
-                },
-                body: JSON.stringify({
-                	subject,context
-                })
-            })
-            .then(response => response.json())
-            .then(json => {
-            	//console.log(json);
-                alert(json);
-                window.location = "/Note/note/";
-            });
-
-        });
-    });
-</script>
 
 </body>
 </html>

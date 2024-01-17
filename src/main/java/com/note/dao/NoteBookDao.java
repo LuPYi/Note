@@ -11,4 +11,8 @@ public interface NoteBookDao {
 	List<NoteBook> getAllNotesByUserId(Integer userId);
 	
 	int deleteNoteBook(Integer bookId);
+
+	boolean updateNoteBook(NoteBook notebook);
+
+	List<NoteBook> getNotesByUserId(Integer userId);
 }

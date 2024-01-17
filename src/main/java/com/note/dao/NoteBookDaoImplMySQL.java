@@ -74,6 +74,47 @@ public class NoteBookDaoImplMySQL implements NoteBookDao {
             return 0; // 或者你可以選擇拋出一個異常
         }
     }
+	
+	  @Override
+	    public boolean updateNoteBook(NoteBook notebook) {
+	        String query = "UPDATE notebook SET subject = ?, context = ? WHERE book_id = ?";
+	        try (Connection connection = datasource.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            preparedStatement.setString(1, notebook.getSubject());
+	            preparedStatement.setString(2, notebook.getContext());
+	            preparedStatement.setInt(3, notebook.getBookId());
+
+	            int rowsAffected = preparedStatement.executeUpdate();
+	            return rowsAffected > 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	  
+	  @Override
+	    public List<NoteBook> getNotesByUserId(Integer userId) {
+	        List<NoteBook> notes = new ArrayList<>();
+	        String query = "SELECT book_id, user_id, subject, context, create_time, update_time FROM notebook WHERE user_id=?";
+	        try (Connection connection = datasource.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	            preparedStatement.setInt(1, userId);
+	            ResultSet rs = preparedStatement.executeQuery();
+	            while (rs.next()) {
+	                NoteBook note = new NoteBook();
+	                note.setBookId(rs.getInt("book_id"));
+	                note.setUserId(rs.getInt("user_id"));
+	                note.setSubject(rs.getString("subject"));
+	                note.setContext(rs.getString("context"));
+	                note.setCreateTime(rs.getTimestamp("create_time"));
+	                note.setUpdateTime(rs.getTimestamp("update_time"));
+	                notes.add(note);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return notes;
+	    }
 
 	
 
