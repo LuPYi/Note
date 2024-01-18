@@ -23,15 +23,49 @@
 </div>
 <%@ include file="/WEB-INF/view/footer.jsp"%>
 
+<!--  
 <script>
 	
 	function upateNoteBook(subject, context, bookId) {
-		if(window.confirm('記事本更新成功\n' + subject + '\n' + context)) {
-			window.location = '/Note/note/update/'+ bookId;
+		if(window.confirm('記事本更新成功\n + subject + '\n' + context')) {
+			//window.location = '/Note/note/update/'+ bookId;
+			//location.reload(true);
 		}
 	}
 	
+	document.addEventListener("DOMContentLoaded", function() {
+
+        var form = document.getElementById("NoteForm");
+        var button = document.getElementById("save-button");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+           
+            var subject = document.getElementById("subject").value;
+            var context = document.getElementById("context").value;
+
+            fetch("/Note/note/update", {
+                method: "POST",
+                headers: {
+                   "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                	subject,context
+                })
+            })
+            .then(response => response.json())
+            .then(json => {
+            	//console.log(json);
+                alert(json);
+                window.location = "/Note/note/";
+            });
+
+        });
+    });
+	
+	
 </script>
+-->
 
 <style>
 	body {

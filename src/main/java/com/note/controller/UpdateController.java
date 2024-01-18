@@ -72,8 +72,6 @@ public class UpdateController {
         }
 
         return "redirect:/note/";
-        
-        
 
     }
 }
