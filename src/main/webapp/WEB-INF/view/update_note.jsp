@@ -6,7 +6,9 @@
 <div class="container">
 	<h5 class="text-center text-primary mt-3">${ message }</h5>
 	<div id="note-container">
-		<form id="updateNoteForm" name="updateNoteForm" action="/Note/note/update/${ noteBook.bookId }" method="post">
+		<!--  form id="updateNoteForm" name="updateNoteForm" action="/Note/note/update/${ noteBook.bookId }" method="post"-->
+		<form id="updateNoteForm" name="updateNoteForm">
+		    <input id="bookId" type='hidden' value="${ noteBook.bookId }" />
 			<h1 class="display-4">個人記事本</h1>
 			<div class="mb-3">
 				<label for="note-title" class="form-label"><h3>標題:</h3></label>
@@ -16,35 +18,23 @@
 				<label for="note-content" class="form-label"><h3>內容:</h3></label>
 				<textarea class="form-control" id="context" name="context" placeholder="輸入內容" required>${ noteBook.context }</textarea> 
 			</div>
-
-			<button class="btn btn-success" id="save-button" name="save-button" type="submit" onclick="upateNoteBook('${noteBook.subject}','${noteBook.context}','${ noteBook.bookId }')">修改記事</button>
 		</form>
+		<button class="btn btn-success" id="save-button" name="save-button" type="button" onclick="upateNoteBook()">修改記事2</button>
 	</div>
 </div>
 <%@ include file="/WEB-INF/view/footer.jsp"%>
 
-<!--  
+ 
 <script>
-	
-	function upateNoteBook(subject, context, bookId) {
-		if(window.confirm('記事本更新成功\n + subject + '\n' + context')) {
-			//window.location = '/Note/note/update/'+ bookId;
-			//location.reload(true);
-		}
-	}
-	
-	document.addEventListener("DOMContentLoaded", function() {
 
-        var form = document.getElementById("NoteForm");
-        var button = document.getElementById("save-button");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-           
-            var subject = document.getElementById("subject").value;
-            var context = document.getElementById("context").value;
-
-            fetch("/Note/note/update", {
+	function upateNoteBook() {
+		if(window.confirm('確定要更新嗎？')) {
+			
+			let subject = document.getElementById("subject").value;
+			let context = document.getElementById("context").value;
+			let bookId =  document.getElementById("bookId").value;
+			
+			fetch("/Note/note/update/"+bookId, {
                 method: "POST",
                 headers: {
                    "content-type": "application/json"
@@ -55,17 +45,12 @@
             })
             .then(response => response.json())
             .then(json => {
-            	//console.log(json);
                 alert(json);
                 window.location = "/Note/note/";
             });
-
-        });
-    });
-	
-	
+		}
+	}
 </script>
--->
 
 <style>
 	body {
