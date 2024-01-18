@@ -17,11 +17,21 @@
 				<textarea class="form-control" id="context" name="context" placeholder="輸入內容" required>${ noteBook.context }</textarea> 
 			</div>
 
-			<button class="btn btn-success" id="save-button" name="save-button" type="submit">修改記事</button>
+			<button class="btn btn-success" id="save-button" name="save-button" type="submit" onclick="upateNoteBook('${noteBook.subject}','${noteBook.context}','${ noteBook.bookId }')">修改記事</button>
 		</form>
 	</div>
 </div>
 <%@ include file="/WEB-INF/view/footer.jsp"%>
+
+<script>
+	
+	function upateNoteBook(subject, context, bookId) {
+		if(window.confirm('記事本更新成功\n' + subject + '\n' + context)) {
+			window.location = '/Note/note/update/'+ bookId;
+		}
+	}
+	
+</script>
 
 <style>
 	body {

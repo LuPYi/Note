@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.note.beans.NoteBook;
 import com.note.beans.User;
 import com.note.dao.NoteBookDaoImplMySQL;
@@ -63,11 +64,17 @@ public class UpdateController {
 
         if (updateSuccess) {
             model.addAttribute("successMessage", "記事本更新成功");
+            //return new Gson().toJson("記事本更新成功" 
+            //        + "\nsubject: " + noteBook.getSubject() 
+            //        + "\ncontext: " + noteBook.getContext());
         } else {
             model.addAttribute("errorMessage", "記事本更新失敗");
         }
 
         return "redirect:/note/";
+        
+        
+
     }
 }
 

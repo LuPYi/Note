@@ -35,7 +35,13 @@ public class SelectController {
     	}
     	
         model.addAttribute("notes", notes);
-
+        
+        if (notes.isEmpty()) {
+            model.addAttribute("message", "查無記事本");
+        } else {
+            model.addAttribute("notes", notes);
+        }
+        model.addAttribute("isEmpty", notes.isEmpty());
         return "search_list";
     }
 }

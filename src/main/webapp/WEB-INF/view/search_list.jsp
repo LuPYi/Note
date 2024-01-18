@@ -19,8 +19,12 @@
 				</div>
 	  		</div>
 		</div>
-     
+		
  </c:forEach>
+ 
+     <c:if test="${isEmpty}">
+        <p class="fs-2 fw-bold text-danger m-3">查無記事本</p>
+     </c:if>
 
 <%@ include file="/WEB-INF/view/footer.jsp"%>
 

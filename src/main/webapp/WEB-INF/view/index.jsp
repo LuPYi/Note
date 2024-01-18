@@ -43,7 +43,7 @@
 								</h2>
 								<div id="collapse${ noteBook.bookId }" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 									<div
-										class="accordion-body d-flex justify-content-between align-items-center">
+										class="accordion-body d-flex justify-content-between align-items-center text-break">
 										${ noteBook.context }
 									<div>
 										<button class="btn btn-success me-1" onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
@@ -66,7 +66,7 @@
 </html>
 
 <script>
-	
+
 	function deleteNoteBook(subject,bookId) {
 		if(window.confirm('確定要刪除嗎？' + subject)) {
 			window.location = '/Note/note/delete/'+ bookId;
