@@ -17,6 +17,13 @@
 	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 	crossorigin="anonymous"></script>
 </head>
+
+ <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
 <body>
 	<div class="container mt-4">
 		<div class="jumbotron">
@@ -44,11 +51,15 @@
 								<div id="collapse${ noteBook.bookId }" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 									<div
 										class="accordion-body d-flex justify-content-between align-items-center text-break">
-										${ noteBook.context }
-									<div>
-										<button class="btn btn-success me-1" onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
-										<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</button>
-									</div>
+										${ noteBook.context }  
+									<div class="text-end">
+										<div>
+											<button class="btn btn-success me-1 " onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
+											<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</button>
+										</div>
+								        <div class="text-danger">建立時間: ${noteBook.createTime}</div>
+										<div class="text-primary">更新時間: ${noteBook.updateTime}</div>
+								    </div>
 									</div>
 								</div>
 							</div>

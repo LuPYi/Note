@@ -1,6 +1,7 @@
 package com.note.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Email;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class LoginController {
 
 	private boolean authenticateUser(String username, String password,HttpSession session) {
 		
-		User user = userDaoImplMySQL.findUserByName(username);
+		User user = userDaoImplMySQL.findUserByNameAndEmail(username, password);
 
 		if(user == null)
 			return false;

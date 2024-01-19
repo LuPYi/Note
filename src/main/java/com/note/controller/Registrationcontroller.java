@@ -36,8 +36,9 @@ public class Registrationcontroller {
 		}
 
 		// 檢查帳號是否已註冊
-		User user = userDaoImplMySQL.findUserByName(name);
-		if(user!=null) {
+		User user = userDaoImplMySQL.findUserByNameAndEmail(name, email);
+		
+		if(user!=null || email!=null) {
 			model.addAttribute("errorMessage", "此帳號已註冊");
 			return "Register";
 		}
