@@ -19,7 +19,7 @@
 				<textarea class="form-control" id="context" name="context" placeholder="輸入內容" required>${ noteBook.context }</textarea> 
 			</div>
 		</form>
-		<button class="btn btn-success" id="save-button" name="save-button" type="button" onclick="upateNoteBook()">修改記事2</button>
+		<button class="btn btn-success" id="save-button" name="save-button" type="button" onclick="upateNoteBook()">修改記事</button>
 	</div>
 </div>
 <%@ include file="/WEB-INF/view/footer.jsp"%>

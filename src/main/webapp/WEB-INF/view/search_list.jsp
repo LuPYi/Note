@@ -9,7 +9,7 @@
  <h1 class="fw-bold m-3" style="color:#1fafaf;">查詢結果</h1>
 	 <div class="row w-100 border bg-primary d-flex justify-content-start">
 		 <c:forEach var="noteBook" items="${notes}" varStatus="loop">
-	        <div class="col-2 m-3">
+	        <div class="col-xl-2 ms-5">
 	        	<div class="card m-2 border-info border-3" style="width: 20rem;">
 				<div class="card-body">
 						<h5 class="card-title fw-bold">${noteBook.subject}</h5>
