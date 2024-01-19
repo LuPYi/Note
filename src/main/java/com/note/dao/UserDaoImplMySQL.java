@@ -36,27 +36,6 @@ public class UserDaoImplMySQL implements UserDao {
         }
     }
 
-//	@Override
-//	public User findUserByName(String username) {
-//		String query = "select id, name, email, password from user where name = ?";
-//        try ( Connection connection = datasource.getConnection();
-//        	  PreparedStatement ps = connection.prepareStatement(query)) {
-//        	ps.setString(1, username);
-//        	ResultSet rs = ps.executeQuery();
-//        	if(rs.next()) {
-//        		User user = new User();
-//        		user.setId(rs.getInt("id"));
-//        		user.setName(rs.getString("name"));
-//        		user.setEmail(rs.getString("email"));
-//        		user.setPassword(rs.getString("password"));
-//        		return user;
-//        	}
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//	}
-	
 	@Override
 	public User findUserByNameAndEmail(String username, String email) {
 		String query = "select id, name, email, password from user where name = ?";
@@ -77,6 +56,5 @@ public class UserDaoImplMySQL implements UserDao {
         }
         return null;
 	}
-    
-    
+     
 }
