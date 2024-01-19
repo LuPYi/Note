@@ -15,7 +15,11 @@
 						<h5 class="card-title fw-bold">${noteBook.subject}</h5>
 						<p class="card-text">${noteBook.context}</p>
 						<div class="text-danger">建立時間: ${noteBook.createTime}</div>
-						<div class="text-primary">更新時間: ${noteBook.updateTime}</div>
+						<div class="text-primary">
+							<c:if test="${noteBook.updateTime ne null}">
+								修改時間: ${noteBook.updateTime}
+							</c:if>
+						</div>
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 							<button class="btn btn-success" onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
 							<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</button>

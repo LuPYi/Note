@@ -58,7 +58,11 @@
 											<button class="btn btn-danger" onclick="deleteNoteBook('${noteBook.subject}','${ noteBook.bookId }')">刪除</button>
 										</div>
 								        <div class="text-danger">建立時間: ${noteBook.createTime}</div>
-										<div class="text-primary">更新時間: ${noteBook.updateTime}</div>
+										<div class="text-primary">
+											<c:if test="${noteBook.updateTime ne null}">
+												修改時間: ${noteBook.updateTime}
+											</c:if>
+										</div>
 								    </div>
 									</div>
 								</div>
