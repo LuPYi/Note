@@ -24,10 +24,10 @@
 						<li class="nav-item"><a class="nav-link active text-light"
 							aria-current="page" href="/Note/note/">首頁</a></li>
 						<li class="nav-item"><a class="nav-link text-light"
-							href="/Note/note/addNote">記事本</a></li>
+							href="/Note/note/all">記事本</a></li>
 					</ul>
 					<form class="d-flex ms-lg-auto" action="/Note/note/query" method="get">
-						<input class="form-control me-2" type="search" placeholder="Search" name="keyword">
+						<input class="form-control me-2" type="search" placeholder="Search" name="keyword" oninvalid="this.setCustomValidity('請輸入查詢關鍵字')" required>
 						<button class="btn btn-outline-success" type="submit">Search</button>
 					</form>
 					<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>
