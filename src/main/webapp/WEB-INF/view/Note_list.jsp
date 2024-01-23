@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
  <h1 class="fw-bold m-3" style="color:#1fafaf;">所有記事本</h1>
-	 <div class="row w-100 border bg-primary d-flex justify-content-start">
+	 <div class="row w-100 border bg-info d-flex justify-content-start">
 		 <c:forEach var="noteBook" items="${notes}" varStatus="loop">
 	        <div class="col-xl-2 ms-5">
 	        	<div class="card m-2 border-info border-3" style="width: 20rem;">
