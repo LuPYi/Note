@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/header.jsp"%>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="container">
 	<h5 class="text-center text-primary mt-3">${ message }</h5>
 	<div id="note-container">
@@ -26,30 +26,50 @@
 
  
 <script>
-
 	function upateNoteBook() {
-		if(window.confirm('確定要更新嗎？')) {
-			
-			let subject = document.getElementById("subject").value;
-			let context = document.getElementById("context").value;
-			let bookId =  document.getElementById("bookId").value;
-			
-			fetch("/Note/note/update/"+bookId, {
-                method: "POST",
-                headers: {
-                   "content-type": "application/json"
-                },
-                body: JSON.stringify({
-                	subject,context
-                })
-            })
-            .then(response => response.json())
-            .then(json => {
-                alert(json);
-                window.location = "/Note/note/";
-            });
-		}
+	    Swal.fire({
+	        title: '確定要更新嗎？',
+	        icon: 'question',
+	        showCancelButton: true,
+	        confirmButtonText: '確定',
+	        cancelButtonText: '取消'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            let subject = document.getElementById("subject").value;
+	            let context = document.getElementById("context").value;
+	            let bookId = document.getElementById("bookId").value;
+	
+	            fetch("/Note/note/update/" + bookId, {
+	                method: "POST",
+	                headers: {
+	                    "content-type": "application/json"
+	                },
+	                body: JSON.stringify({
+	                    subject,
+	                    context
+	                })
+	            })
+	                .then(response => response.json())
+	                .then(json => {
+	                    Swal.fire({
+	                        title: '更新成功',
+	                        html: '<p>Subject: ' + subject + '</p><p>Context: ' + context + '</p>',
+	                        icon: 'success'
+	                    }).then(() => {
+	                        window.location = "/Note/note/";
+	                    });
+	                })
+	                .catch(error => {
+	                    Swal.fire({
+	                        title: '更新失敗',
+	                        text: '請稍後再試',
+	                        icon: 'error'
+	                    });
+	                });
+	        }
+	    });
 	}
+
 </script>
 
 <style>
