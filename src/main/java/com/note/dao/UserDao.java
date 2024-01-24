@@ -6,6 +6,6 @@ public interface UserDao {
     
 	boolean registerUser(User user);
 	
-	User findUserByNameAndEmail(String username, String email);
+	User findUserByName(String name);
 
 }
