@@ -18,27 +18,27 @@ public class Registrationcontroller {
 
 	@Autowired
 	UserDaoImplMySQL userDaoImplMySQL;
-	
+
 	@GetMapping
 	public String registerPage() {
 		return "Register";
 	}
-	
+
 	@PostMapping
 	public String register(@RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("password") String password, @RequestParam("confirm_password") String confirmPassword,
 			Model model) {
-		
+
 		// 簡單的密碼驗證
 		if (!password.equals(confirmPassword)) {
 			model.addAttribute("errorMessage", "密碼不匹配");
 			return "Register";
 		}
 
+
 		// 檢查帳號是否已註冊
-		User user = userDaoImplMySQL.findUserByNameAndEmail(name, email);
-		
-		if(user!=null || email!=null) {
+		User user = userDaoImplMySQL.findUserByName(name);
+		if(user!=null) {
 			model.addAttribute("errorMessage", "此帳號已註冊");
 			return "Register";
 		}
@@ -51,7 +51,7 @@ public class Registrationcontroller {
 		if (userDaoImplMySQL.registerUser(newUser)) {
 			return "login";
 		}
-		
+
 		// 註冊失敗
 		model.addAttribute("errorMessage", "註冊失敗");
 		return "Register";
