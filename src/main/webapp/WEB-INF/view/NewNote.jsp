@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/view/header.jsp"%>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -70,38 +71,48 @@ body {
 		</div>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        var form = document.getElementById("NoteForm");
-        var button = document.getElementById("save-button");
-
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-           
-            var subject = document.getElementById("subject").value;
-            var context = document.getElementById("context").value;
-
-            fetch("/Note/note/addNote", {
-                method: "POST",
-                headers: {
-                   "content-type": "application/json"
-                },
-                body: JSON.stringify({
-                	subject,context
-                })
-            })
-            .then(response => response.json())
-            .then(json => {
-            	//console.log(json);
-                alert(json);
-                window.location = "/Note/note/";
-            });
-
-        });
-    });
+	document.addEventListener("DOMContentLoaded", function() {
+	
+	    var form = document.getElementById("NoteForm");
+	    var button = document.getElementById("save-button");
+	
+	    form.addEventListener("submit", function(event) {
+	        event.preventDefault();
+	
+	        var subject = document.getElementById("subject").value;
+	        var context = document.getElementById("context").value;
+	
+	        fetch("/Note/note/addNote", {
+	            method: "POST",
+	            headers: {
+	                "content-type": "application/json"
+	            },
+	            body: JSON.stringify({
+	                subject,
+	                context
+	            })
+	        })
+	        .then(response => response.json())
+	        .then(json => {
+	            Swal.fire({
+	                title: 'Note Added Successfully',
+	                html: '<p>Subject: ' + subject + '</p><p>Context: ' + context + '</p>',
+	                icon: 'success'
+	            }).then(() => {
+	                window.location = "/Note/note/";
+	            });
+	        })
+	        .catch(error => {
+	            Swal.fire({
+	                title: 'Error',
+	                text: 'Failed to add note. Please try again later.',
+	                icon: 'error'
+	            });
+	        });
+	
+	    });
+	});
 </script>
 
 </body>
