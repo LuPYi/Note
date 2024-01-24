@@ -27,8 +27,9 @@
 							href="/Note/note/all">記事本</a></li>
 					</ul>
 					<form class="d-flex ms-lg-auto" action="/Note/note/query" method="get">
-						<input class="form-control me-2" type="search" placeholder="Search" name="keyword" oninvalid="this.setCustomValidity('請輸入查詢關鍵字')" required>
-						<button class="btn btn-outline-success" type="submit">Search</button>
+						<input class="form-control me-2" type="search" placeholder="Search" name="keyword" oninput="handleInput()" required>
+						<button class="btn btn-outline-success" onclick="handleSearch()">Search</button>
+						<div id="error-message" style="color: red;"></div>
 					</form>
 					<a class="btn btn-danger ms-3 me-1" href="/Note/note/logout" role="button">登出</a>
 					<p class="text-white m-2 fs-5 border border-light border-3 p-2">😎${ user.name }</p>
@@ -36,4 +37,28 @@
 			</div>
 		</nav>
 	</body>
+	
+	<script>
+		var hasSearched = false;
+		
+		function handleInput() {
+		  hasSearched = true;
+		  validateForm();
+		}
+
+		function handleSearch() {
+		  hasSearched = true;
+		  validateForm();
+		}
+		
+		function validateForm() {
+		  var inputElement = document.getElementsByName("keyword")[0];
+
+		  if (inputElement.value.trim() === "" && hasSearched) {
+		    inputElement.setCustomValidity('請輸入查詢關鍵字');
+		  } else {
+		    inputElement.setCustomValidity('');
+		  }
+		}
+	</script>
 </html>
