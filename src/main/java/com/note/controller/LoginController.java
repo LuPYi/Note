@@ -42,7 +42,7 @@ public class LoginController {
 
 	private boolean authenticateUser(String username, String password,HttpSession session) {
 		
-		User user = userDaoImplMySQL.findUserByNameAndEmail(username, password);
+		User user = userDaoImplMySQL.findUserByName(username);
 
 		if(user == null)
 			return false;
