@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <h1 class="fw-bold m-3" style="color:#1fafaf;">所有記事本</h1>
 	 <div class="row w-100 border bg-info d-flex justify-content-start">
 		 <c:forEach var="noteBook" items="${notes}" varStatus="loop">
@@ -33,11 +34,18 @@
 <%@ include file="/WEB-INF/view/footer.jsp"%>
 
 <script>
-	
-	function deleteNoteBook(subject,bookId) {
-		if(window.confirm('確定要刪除嗎？' + subject)) {
-			window.location = '/Note/note/delete/'+ bookId;
-		}
+	function deleteNoteBook(subject, bookId) {
+	    Swal.fire({
+	        title: '確定要刪除嗎？',
+	        text: subject,
+	        icon: 'warning',
+	        showCancelButton: true,
+	        confirmButtonText: '確定',
+	        cancelButtonText: '取消'
+	    }).then((result) => {
+	        if (result.isConfirmed) {
+	            window.location = '/Note/note/delete/' + bookId;
+	        }
+	    });
 	}
-
 </script>
