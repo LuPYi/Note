@@ -37,7 +37,7 @@ public class UserDaoImplMySQL implements UserDao {
     }
 
 	@Override
-	public User findUserByNameAndEmail(String username, String email) {
+	public User findUserByName(String username) {
 		String query = "select id, name, email, password from user where name = ?";
         try ( Connection connection = datasource.getConnection();
         	  PreparedStatement ps = connection.prepareStatement(query)) {
