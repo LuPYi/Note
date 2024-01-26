@@ -43,9 +43,11 @@
 										${ noteBook.subject }</button>
 								</h2>
 								<div id="collapse${ noteBook.bookId }" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+									<div class="me-3">
 									<div
 										class="accordion-body d-flex justify-content-between align-items-center text-break">
-										${ noteBook.context }  
+										${ noteBook.context } 
+									</div> 
 									<div class="text-end">
 										<div>
 											<button class="btn btn-success me-1 " onclick="window.location.href='/Note/note/update/${ noteBook.bookId }'">修改</button>
