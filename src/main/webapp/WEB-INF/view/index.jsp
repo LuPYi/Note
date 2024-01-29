@@ -45,7 +45,7 @@
 								<div id="collapse${ noteBook.bookId }" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 									<div class="me-3">
 									<div
-										class="accordion-body d-flex justify-content-between align-items-center text-break">
+										class="accordion-body d-flex justify-content-between align-items-center" style="white-space: pre-line;">
 										${ noteBook.context } 
 									</div> 
 									<div class="text-end">

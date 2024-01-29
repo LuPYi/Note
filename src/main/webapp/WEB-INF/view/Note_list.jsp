@@ -14,7 +14,7 @@
 	        	<div class="card m-2 border-info border-3" style="width: 20rem;">
 				<div class="card-body">
 						<h5 class="card-title fw-bold">${noteBook.subject}</h5>
-						<p class="card-text">${noteBook.context}</p>
+						<p class="card-text" style="white-space: pre-line;">${noteBook.context}</p>
 						<div class="text-danger">建立時間: ${noteBook.createTime}</div>
 						<div class="text-primary">
 							<c:if test="${noteBook.updateTime ne null}">

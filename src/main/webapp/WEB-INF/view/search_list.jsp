@@ -52,3 +52,13 @@
 	    });
 	}
 </script>
+
+<style>
+	.card-text {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5;
+	white-space: pre-line;
+	}
+</style>
