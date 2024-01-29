@@ -27,7 +27,7 @@
 							href="/Note/note/all">記事本</a></li>
 					</ul>
 					<form class="d-flex ms-lg-auto" action="/Note/note/query" method="get">
-						<input class="form-control me-2" type="search" placeholder="Search" name="keyword" oninput="handleInput()" required>
+						<input class="form-control me-2" type="search" placeholder="請輸入關鍵字" name="keyword" oninput="handleInput()" required>
 						<button class="btn btn-outline-success" onclick="handleSearch()">Search</button>
 						<div id="error-message" style="color: red;"></div>
 					</form>
