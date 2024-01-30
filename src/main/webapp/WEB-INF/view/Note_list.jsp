@@ -30,7 +30,9 @@
 	        </div>
 		 </c:forEach>
 	</div>
-
+	<c:if test="${isEmpty}">
+        <p class="fs-2 fw-bold text-danger m-3">目前無記事本</p>
+     </c:if>
 <%@ include file="/WEB-INF/view/footer.jsp"%>
 
 <script>

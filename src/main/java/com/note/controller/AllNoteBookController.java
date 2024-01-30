@@ -32,7 +32,7 @@ public class AllNoteBookController {
             model.addAttribute("notes", notes);
         }
 
-        //model.addAttribute("isEmpty", notes.isEmpty());
+        model.addAttribute("isEmpty", notes.isEmpty());
         
 		return "Note_list";
 	}
